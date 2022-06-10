@@ -1,0 +1,11 @@
+.controls {
+    width: 300px;
+    padding: 20px;
+    background: wheat;
+    display: flex;
+    justify-content: space-between;
+}
+
+.controls button {
+    width: 80px;
+}
