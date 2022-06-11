@@ -2,9 +2,8 @@
 let volume = 10;
 
 // Helper functions
-function clamp(value, min, max) {
-    return Math.min(max, Math.max(min, value));
-}
+const clamp = (value, min, max) => Math.min(max, Math.max(min, value));
+const clampVolume = volume => clamp(volume, 0, 20);
 
 // Counter component
 const counterRoot = document.getElementById('volume-counter');
@@ -15,15 +14,13 @@ function displayCounter() {
     volumeDisplay.textContent = volume;
 }
 
-function getChangeVolumeCallback(delta) {
-    return () => {
-        volume = clamp(volume + delta, 1, 20);
-        displayCounter();
-    };
-}
+const changeVolumeCallback = delta => () => {
+    volume = clampVolume(volume + delta);
+    displayCounter();
+};
 
-downButton.addEventListener('click', getChangeVolumeCallback(-1));
-upButton.addEventListener('click', getChangeVolumeCallback(1));
+downButton.addEventListener('click', changeVolumeCallback(-1));
+upButton.addEventListener('click', changeVolumeCallback(1));
 
 
 // Page load actions
